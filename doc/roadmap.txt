@@ -13,3 +13,15 @@ Consider the following:
 5b. http://www.kdnuggets.com/datasets/index.html
 
 6. http://library.uoregon.edu/govdocs/datasets-econbusiness.html
+
+
+
+Datasets under Consideration for project are :
+
+1. Tamilnadu Electricity Board Hourly Readings Data Set 
+Abstract: This data can be effectively produced the result to fewer parameter of the Load profile can be reduced in the Database
+http://archive.ics.uci.edu/ml/datasets/Tamilnadu+Electricity+Board+Hourly+Readings
+
+2.http://archive.ics.uci.edu/ml/datasets/3D+Road+Network+%28North+Jutland%2C+Denmark%29
+3D Road Network (North Jutland, Denmark) Data Set 
+Abstract: 3D road network with highly accurate elevation information (+-20cm) from Denmark used in eco-routing and fuel/Co2-estimation routing algorithms
