@@ -25,3 +25,6 @@ http://archive.ics.uci.edu/ml/datasets/Tamilnadu+Electricity+Board+Hourly+Readin
 2.http://archive.ics.uci.edu/ml/datasets/3D+Road+Network+%28North+Jutland%2C+Denmark%29
 3D Road Network (North Jutland, Denmark) Data Set 
 Abstract: 3D road network with highly accurate elevation information (+-20cm) from Denmark used in eco-routing and fuel/Co2-estimation routing algorithms
+
+3.http://archive.ics.uci.edu/ml/datasets/Census+Income
+Prediction task is to determine whether a person makes over 50K a year.
