@@ -8,7 +8,6 @@ from sklearn import tree
 
 # Reading the data through Pandas package's own csv reader into a data frame
 train_df = pd.read_csv('train.csv', header=0)
-# Note: train.csv is available from http://www.kaggle.com/c/titanic-gettingStarted/download/train.csv
 
 # Cleaning the data: filling missing values and coverting some variables to categorical variables:
 
