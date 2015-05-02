@@ -1,8 +1,13 @@
 import csv
+import numpy as np
+import pandas as pd
+import pylab as P
+from sklearn import tree
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.cross_validation import train_test_split
+from sklearn.learning_curve import validation_curve
 
 def remove_missing(data):
 	for i in data :
@@ -32,27 +37,28 @@ def main():
 	data = remove_missing(data)
 	data_refined , target = refine_data(data)
 
-	#using DictVectorizer to get data in a Scikit-Learn-usable form 
-	vec = DictVectorizer()
-	data_refined = vec.fit_transform(data_refined).toarray() 
-
-	data_train , data_test , target_train , target_test = train_test_split( data_refined , target , test_size = 0.4)
-
-	print "Fitting the nearest neighbor model..."
-	n=KNeighborsClassifier(n_neighbors=20)
-	n.fit(data_train , target_train)
-
-	print "Score of nearest neighbour algorithm on cross-validation set:" , n.score(data_test,target_test)
-
-	print "Loading test set..."
-	data = list(csv.DictReader(open('test.csv','rU')))
-	data = remove_missing(data)
-	data_refined , target = refine_data(data)
 
 	#using DictVectorizer to get data in a Scikit-Learn-usable form 
 	vec = DictVectorizer()
-	data_refined = vec.fit_transform(data_refined).toarray()
+	data_refined= vec.fit_transform(data_refined).toarray() 
 
-	print "Score of nearest neighbour algorithm on test set:" , float(n.score(data_refined, target))*100 ,"%"
+	data_train , data_test , target_train , target_test = train_test_split( data_refined , target, test_size = 0.4)
+
+	for k in [5,10,15,20,25,30,35,40]:
+
+		n=KNeighborsClassifier(n_neighbors=k)
+		n.fit(data_train , target_train)
+
+		print "Score of nearest neighbour algorithm on cross-validation set for k=" ,k,"is :" ,n.score(data_test,target_test)
+
+		data = list(csv.DictReader(open('test.csv','rU')))
+		data = remove_missing(data)
+		data_refined , target = refine_data(data)
+
+		#using DictVectorizer to get data in a Scikit-Learn-usable form 
+		vec = DictVectorizer()
+		data_refined = vec.fit_transform(data_refined).toarray()
+
+		print "Score of nearest neighbour algorithm on test set for k = ",k,"is :",float(n.score(data_refined, target))*100 ,"%"
 
 main()
