@@ -1,14 +1,7 @@
-#Information on what everyone has done 
+#Information on what the group has done 
 
-We will be using the SciKit-learn Machine Learning Library (for the first dataset atleast) as Anil Sir initially suggested .So ,everyone needs to get familiar with python soon.
+The group has already grasped the basics of Sci-kit Machine Learning toolkit and applied its functionality to the following datasets :
 
-Hritik Jain :
+1.Prediction of income based on various features of a person such as education ,occupation and marrital status.
+2.Titanic survival analysis , An ongoing project on kaggle .
 
-
-Himadri Mishra :
-
-
-Ribhav Soni :
-
-
-Vishal Agarwal :

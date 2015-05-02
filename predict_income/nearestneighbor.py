@@ -1,8 +1,13 @@
 import csv
+import numpy as np
+import pandas as pd
+import pylab as P
+from sklearn import tree
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.cross_validation import train_test_split
+from sklearn.learning_curve import validation_curve
 
 def remove_missing(data):
 	for i in data :
@@ -32,11 +37,16 @@ def main():
 	data = remove_missing(data)
 	data_refined , target = refine_data(data)
 
+	#plotting data for visualizations
+	df = pd.read_csv('adult.csv',header = 0)
+	df['age'].dropna().hist(bins=16,range=(0,80),alpha=.5)
+	P.show()
+
 	#using DictVectorizer to get data in a Scikit-Learn-usable form 
 	vec = DictVectorizer()
-	data_refined = vec.fit_transform(data_refined).toarray() 
+	data_refined= vec.fit_transform(data_refined).toarray() 
 
-	data_train , data_test , target_train , target_test = train_test_split( data_refined , target , test_size = 0.4)
+	data_train , data_test , target_train , target_test = train_test_split( data_refined , target, test_size = 0.4)
 
 	print "Fitting the nearest neighbor model..."
 	n=KNeighborsClassifier(n_neighbors=20)
