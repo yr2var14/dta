@@ -42,16 +42,36 @@ def clean_data(data):
 	return data , target
 
 
-def print_dataStats():
+def print_dataStats(target):
 
+	count = 0
+	for k in target:
+		if k==0:
+			count=count+1;
+
+	print "Percentage of people with income less than $50,000 per annum is : ",float(count)/len(target)*100 , "%"
+	
 	df = pd.read_csv('adult.csv',header = 0)
 	
 	#visualisation for age
 	df['age'].hist(bins=16,range=(0,80),alpha=.5)
+	P.title("Frequency with Age")
+	P.xlabel("Age")
+	P.ylabel("Number of observations")
 	P.show()
 	
 	#visualisation for education-level
 	df['education-num'].hist(bins=16 , range=(0,16))
+	P.title("Frequency with education-level")
+	P.xlabel("Education-num")
+	P.ylabel("Number of samples")
+	P.show()
+
+	#visualization for hours-per-week
+	df['hours-per-week'].hist(bins=16 , range=(0,16))
+	P.title("Frequency with hours-per-week")
+	P.xlabel("hours-per-week")
+	P.ylabel("Number of observations")
 	P.show()
 
 
@@ -59,7 +79,7 @@ def train_model(model_name , data_train , target_train):
 	
 	if(model_name == 'NearestNeighbor'):
 		print "Fitting the nearest neighbor model..."
-		n=KNeighborsClassifier(n_neighbors=20)
+		n=KNeighborsClassifier(n_neighbors=35)
 		n.fit(data_train , target_train)
 		return n;
 
@@ -86,7 +106,7 @@ def main():
 	data_test = vec.fit_transform(data_test).toarray()
 
 	#plotting data for visualizations
-	print_dataStats()
+	print_dataStats(target)
 
 	
 	data_train , cv_data_test , target_train , cv_target_test = train_test_split( data_refined , target, test_size = 0.33)
@@ -94,7 +114,7 @@ def main():
 	# decision tree
 
 	d=train_model('DecisionTree' ,data_train ,target_train)
-	print "Score of decision tree algorithm on cross-validation set:" , float(d.score(cv_data_test,cv_target_test))*100,"100"
+	print "Score of decision tree algorithm on cross-validation set:" , float(d.score(cv_data_test,cv_target_test))*100,"%"
 	print "Score of decision tree algorithm on test set:" , float(d.score(data_test, target_test))*100 ,"%"
 
 	# k-Nearest Neighbors
