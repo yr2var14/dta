@@ -54,9 +54,17 @@ plot(x,y,xlim=htlim,xlab="Fathers' Height"
 #print(length(pred$fit))
 lines(hgrid,pred$fit,lwd=2,col=2)
 matlines(hgrid,se.band,lwd=1,col="blue",lty=3)
+e<-resid(lm(y~poly(x,2),data=Galton))
+plot(x,e,xlab="Father's Height",
+     ylab="Residuals",
+     col="red",
+     frame=T,
+     main="Residuals vs Parent Height Deg-2")
+abline(h=0)
 
 #Regression for degree 3
 fit<-lm(y~poly(x,3),data=Galton)
+print(coef(summary(fit)))
 pred<-predict(fit,newdata=data.frame(x=hgrid),se=T)
 se.band=cbind(pred$fit+2*pred$se.fit,pred$fit-2*pred$se.fit)
 #print(se.band)
@@ -69,9 +77,17 @@ plot(x,y,xlim=htlim,xlab="Fathers' Height"
      main="Polynomial Regressed Curve Degree=3")
 lines(hgrid,pred$fit,lwd=2,col=2)
 matlines(hgrid,se.band,lwd=1,col="blue",lty=3)
+e<-resid(lm(y~poly(x,3),data=Galton))
+plot(x,e,xlab="Father's Height",
+     ylab="Residuals",
+     col="red",
+     frame=T,
+     main="Residuals vs Parent Height Deg-3")
+abline(h=0)
 
 #Regression for degree 4
 fit<-lm(y~poly(x,4),data=Galton)
+print(coef(summary(fit)))
 pred<-predict(fit,newdata=data.frame(x=hgrid),se=T)
 se.band=cbind(pred$fit+2*pred$se.fit,pred$fit-2*pred$se.fit)
 plot(x,y,xlim=htlim,xlab="Fathers' Height"
@@ -83,9 +99,17 @@ plot(x,y,xlim=htlim,xlab="Fathers' Height"
      main="Polynomial Regressed Curve Degree=4")
 lines(hgrid,pred$fit,lwd=2,col=2)
 matlines(hgrid,se.band,lwd=1,col="blue",lty=3)
+e<-resid(lm(y~poly(x,4),data=Galton))
+plot(x,e,xlab="Father's Height",
+     ylab="Residuals",
+     col="red",
+     frame=T,
+     main="Residuals vs Parent Height Deg-4")
+abline(h=0)
 
 #Regression for degree 5
 fit<-lm(y~poly(x,5),data=Galton)
+print(coef(summary(fit)))
 pred<-predict(fit,newdata=data.frame(x=hgrid),se=T)
 se.band=cbind(pred$fit+2*pred$se.fit,pred$fit-2*pred$se.fit)
 #print(se.band)
